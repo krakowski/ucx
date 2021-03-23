@@ -246,13 +246,13 @@ static void print_progress(char **test_names, unsigned num_names,
 #if _OPENMP
     if (!final) {
         printf("[thread %d]", omp_get_thread_num());
-    } else if (flags & TEST_FLAG_PRINT_RESULTS) {
+    } else if (flags & TEST_FLAG_PRINT_RESULTS && !(flags & TEST_FLAG_PRINT_CSV)) {
         printf("Final:    ");
     }
 #endif
 
     if (is_multi_thread && final) {
-        fmt_csv     = "%4.0f,%.3f,%.2f,%.0f\n";
+        fmt_csv     = "%4.0f,,,%.3f,,%.2f,,%.0f\n";
         fmt_numeric = "%'18.0f %29.3f %22.2f %'24.0f\n";
         fmt_plain   = "%18.0f %29.3f %22.2f %23.0f\n";
 
